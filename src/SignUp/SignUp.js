@@ -18,7 +18,7 @@ const SignUp = () => {
 
 
     const imagebbKey = process.env.REACT_APP_image_key
-    console.log(imagebbKey);
+  
 
     const handleSignUp = data => {
         setLoading(true)
