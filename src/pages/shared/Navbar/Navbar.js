@@ -40,11 +40,11 @@ const Navbar = () => {
                         {
                             user ? <>
                                
-                                <div className='my-3'> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img -my-3 "  /> : <span className=''><BiUserCircle></BiUserCircle></span> }</div>
-                                <button onClick={handleLogOut} className='md:mx-4 text-lg font-semibold my-2'>Log Out</button>
+                                <div className='my-3'> {user?.photoURL ? <img src={user?.photoURL} alt="" className="w-8 h-8 rounded-full  "  /> : <span className=''><BiUserCircle></BiUserCircle></span> }</div>
+                                <button onClick={handleLogOut} className='md:mx-4 text-lg font-semibold my-2'>Sign Out</button>
 
                             </>
-                                : <NavLink to='/login' className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')}>Log In </NavLink>
+                                : <NavLink to='/login' className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2  text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')}>Sign In </NavLink>
                         }
 
                     </div>
