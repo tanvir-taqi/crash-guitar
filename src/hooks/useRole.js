@@ -9,11 +9,12 @@ const useRole =(email)=>{
         fetch(`http://localhost:5000/users?email=${email}`)
         .then(res => res.json())
         .then(data =>{
+            
             setRole(data.role)
             setRoleLoading(false)
         })
-        return [role]
-    },[email,role])
+        
+    },[email])
 
     return [role , roleLoading]
 }

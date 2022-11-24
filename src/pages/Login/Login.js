@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { BiBullseye, BiSleepy } from 'react-icons/bi';
 import { FaGoogle  } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../../componenets/LoadingSpinner';
 import { AuthContext } from '../../userContext/UserContext';
 
 const Login = () => {
@@ -91,7 +92,7 @@ const Login = () => {
     }
 
     if (loading) {
-        return <h1>loading</h1>
+        return <LoadingSpinner></LoadingSpinner>
 
     }
 

@@ -6,11 +6,12 @@ import { AuthContext } from '../userContext/UserContext';
 
 const SellerRoute = ({children}) => {
     const {user,loading} = useContext(AuthContext)
-    const [role,roleLoading] = useRole(user.email)
+    console.log(user);
+    const [role,roleLoading] = useRole(user?.email)
     const location = useLocation();
 
 
-    if(loading && roleLoading){
+    if(loading || roleLoading){
         return <LoadingSpinner></LoadingSpinner>
     }
 
