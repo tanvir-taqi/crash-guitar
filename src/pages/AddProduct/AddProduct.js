@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../componenets/LoadingSpinner';
 import { AuthContext } from '../../userContext/UserContext';
+
 
 const AddProduct = () => {
     const { user, loading } = useContext(AuthContext)
@@ -51,6 +53,7 @@ const AddProduct = () => {
                     description: data.description
 
                 }
+                
 
                 addProductToDB(product);
             })
@@ -68,10 +71,11 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
+                toast("Congratulations! You have successfully added the product")
                 reset()
                 setProductAddLoading(false)
-                navigate('/myproducts')
             })
+            navigate('/myproducts')
     }
 
     if (loading || productAddLoading) {
@@ -80,6 +84,7 @@ const AddProduct = () => {
 
     return (
         <div className=" py-20 w-full  flex justify-center">
+         
             <div className='p-10 bg-cyan-200'>
                 <h1 className="text-center font-bold text-2xl">Add A Product</h1>
 
@@ -117,7 +122,7 @@ const AddProduct = () => {
                             <label className="label"> <span className="label-text">Product Image</span></label>
                             <input type="file" {...register("img", {
                                 required: "Image is Required"
-                            })} className=" w-full max-w-xs" />
+                            })} className=" file-input file-input-bordered  file-input-info w-full max-w-xs" />
                             {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                         </div>
 

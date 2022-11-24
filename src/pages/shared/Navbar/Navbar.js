@@ -42,6 +42,7 @@ const Navbar = () => {
                     <div onClick={() => setDisplay(false)} className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
                         <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700 ' : 'mr-4 text-lg font-semibold   my-2')} to='/'>Home</NavLink>
                         <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/blogs'>Blogs</NavLink>
+                        {/* <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/products/allproducts'>Products</NavLink> */}
 
                         {
                             user && role === 'seller' ? <>
