@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import React, { useContext } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import LoadingSpinner from '../../componenets/LoadingSpinner';
 import { AuthContext } from '../../userContext/UserContext';
 import MySingleProduct from './MySingleProduct';
@@ -33,11 +34,31 @@ const MyProducts = () => {
                 .then(res => res.json())
                 .then(data => {
                     if(data.acknowledged){
+                        toast.error("Successfully Deleted")
                         refetch()
                     }
                 })
             }
     }
+
+
+    const handleAddToAd = (id)=>{
+     
+                fetch(`http://localhost:5000/myproducts/${id}`,{
+                    method: 'PUT',
+                    headers:{
+                        'content-type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.acknowledged){
+                        toast.success("Successfully Added to Advertisement")
+                        refetch()
+                    }
+                })
+    }
+
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
@@ -45,6 +66,7 @@ const MyProducts = () => {
 
     return (
         <div className='md:m-10'>
+            <Toaster></Toaster>
 
             <h1 className='text-center text-3xl font-extrabold text-slate-800'>My Products</h1>
            <div className='flex justify-center items-center flex-col'>
@@ -54,6 +76,7 @@ const MyProducts = () => {
              i={i}
              product = {product}
              handleMyProductDelete = {handleMyProductDelete}
+             handleAddToAd = {handleAddToAd}
              ></MySingleProduct>)
             }
            </div>

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import useRole from '../hooks/useRole';
+import { AuthContext } from '../userContext/UserContext';
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ product, setProduct }) => {
+    const { user } = useContext(AuthContext)
+    const [role, roleLoading] = useRole(user?.email)
 
+    const { askingPrice, categoryid, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
 
-    const { askingPrice, categoryid,postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
-    console.log(product);
 
     return (
         <div>
@@ -24,48 +29,58 @@ const SingleProduct = ({ product }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ">
                             <div className="">
                                 <div className=" bg-cover text-center overflow-hidden">
-                                    <img src={productPhoto} className='h-48 w-48' alt="" />
+                                    <PhotoProvider>
+                                        <PhotoView src={productPhoto}>
+                                        <img src={productPhoto} className='h-48 w-48' alt="" />
+                                        </PhotoView>
+                                    </PhotoProvider>
                                 </div>
                                 <div className="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
                                     <div className="">
 
-                                        <p className="text-gray-900 text-md  mt-2">Seller: <strong> {sellerName}</strong></p>
-                                        <p className="text-gray-900 text-sm  mt-2">Posted for sale: <strong> {postedOnline}</strong></p>
+                                        <p className="text-gray-700 text-md  mt-2">Seller: <strong> {sellerName}</strong></p>
+                                        <p className="text-gray-700 text-sm  mt-2">Posted for sale: <strong> {postedOnline}</strong></p>
 
                                         <div className="text-md py-4">
-                                            <p className="text-gray-500 text-sm">{description.length > 50 ? `${description.slice(0,50)}... ` : description}</p>
+                                            <p className="text-gray-600 text-sm">{description.length > 50 ? `${description.slice(0, 50)}... ` : description}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="lg:border-l lg:pl-4">
-                            <div className="text-md border-b pb-4 mb-4">
+                                <div className="text-md border-b pb-4 mb-4">
                                     <p className="text-gray-500 text-sm">Condition: <strong>{condition}</strong></p>
                                 </div>
                                 <div className="text-md border-b pb-4 mb-4">
-                                     <p className="text-gray-500 text-sm">Location: <strong>{location}</strong></p>
+                                    <p className="text-gray-500 text-sm">Location: <strong>{location}</strong></p>
                                 </div>
                                 <div className="text-md border-b pb-4 mb-4">
-                                     <p className="text-gray-500 text-sm">Market Price: <strong>{marketPrice} $</strong></p>
+                                    <p className="text-gray-500 text-sm">Market Price: <strong>{marketPrice} $</strong></p>
                                 </div>
                                 <div className="text-md border-b pb-4 mb-4">
-                                     <p className="text-gray-500 text-sm">Asking Price: <strong>{askingPrice} $</strong></p>
+                                    <p className="text-gray-500 text-sm">Asking Price: <strong>{askingPrice} $</strong></p>
                                 </div>
                                 <div className="text-md border-b pb-4 mb-4">
                                     <p className="text-gray-500 text-sm">Purchase Year: <strong>{usedYears}</strong></p>
                                 </div>
                                 <div className="text-md border-b pb-4 mb-4">
-                                     <p className="text-gray-500 text-sm">Seller Contact: <strong>{phone}</strong></p>
+                                    <p className="text-gray-500 text-sm">Seller Contact: <strong>{phone}</strong></p>
                                 </div>
-                            
-                             
+
+
 
                             </div>
 
                         </div>
+                        {
 
-                    <button className='w-full bg-cyan-500 py-1 font-semibold rounded-full hover:text-white'>Book Now</button>
+                            role === 'buyer' && <label
+                                htmlFor="booking-modal"
+                                onClick={() => setProduct(product)}
+                                className=' btn capitalize outline-none btn-sm border-none w-full bg-cyan-600  font-semibold rounded-full hover:text-black hover:bg-cyan-400'
+                            >Book Now</label>
+                        }
                     </div>
 
                 </div>

@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import MyProducts from "../pages/MyProducts/MyProducts";
 import Products from "../Products/Products";
 import SignUp from "../SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 
 
@@ -32,8 +33,8 @@ export const router = createBrowserRouter([
                 element:<SignUp></SignUp>
             },
             {
-                path: '/products/:id',
-                element:<Products></Products>,
+                path: '/category/:id',
+                element:<PrivateRoute><Products></Products></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
