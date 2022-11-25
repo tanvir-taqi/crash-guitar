@@ -13,7 +13,6 @@ const Navbar = () => {
 
     const [role, roleLoading] = useRole(user?.email)
 
-    console.log(role);
 
     const handleLogOut = () => {
         const agreeToLogout = window.confirm("Are You Sure?")

@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -26,6 +27,8 @@ const AddProduct = () => {
 
     const handleAddProduct = (data) => {
         setProductAddLoading(true)
+        const date = new Date()
+        const dateTime =  format(date , 'PP')
         const image = data.img[0]
         const formData = new FormData()
         formData.append('image', image)
@@ -50,7 +53,8 @@ const AddProduct = () => {
                     condition: data.condition,
                     location: data.location,
                     phone: data.phone,
-                    description: data.description
+                    description: data.description,
+                    postedOnline: dateTime
 
                 }
                 
@@ -161,7 +165,7 @@ const AddProduct = () => {
 
 
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Years Of Purchase </span></label>
+                            <label className="label"> <span className="label-text">Year Of Purchase </span></label>
                             <input type="text" {...register("years", {
                                 required: "Years Of Purchase is required"
                             })} className="input input-bordered w-full max-w-xs" />
