@@ -54,7 +54,8 @@ const AddProduct = () => {
                     location: data.location,
                     phone: data.phone,
                     description: data.description,
-                    postedOnline: dateTime
+                    postedOnline: dateTime,
+                    status: "Available"
 
                 }
                 

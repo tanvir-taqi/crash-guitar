@@ -1,12 +1,19 @@
 
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
+import LoadingSpinner from '../componenets/LoadingSpinner';
 import CategoryProducts from '../pages/CategoryProducts/CategoryProducts';
 import SingleProduct from './SingleProduct';
 
 const Products = () => {
 
     const products = useLoaderData()
+    const navigation = useNavigation();
+
+    if(navigation.state === "loading"){
+        return <LoadingSpinner></LoadingSpinner>
+    }
+
 
     return (
         <div className=''>

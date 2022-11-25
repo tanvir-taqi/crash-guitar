@@ -20,6 +20,25 @@ const MyProducts = () => {
         }
     })
 
+    const handleMyProductDelete = (id)=>{
+            const agree = window.confirm('Are you sure you want to delete this product?')
+            
+            if(!agree){
+                return
+            }
+            else{
+                fetch(`http://localhost:5000/myproducts/${id}`,{
+                    method: 'DELETE',
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.acknowledged){
+                        refetch()
+                    }
+                })
+            }
+    }
+
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -28,13 +47,16 @@ const MyProducts = () => {
         <div className='md:m-10'>
 
             <h1 className='text-center text-3xl font-extrabold text-slate-800'>My Products</h1>
-            {
+           <div className='flex justify-center items-center flex-col'>
+           {
              myProducts.map((product,i) => <MySingleProduct
              key={product._id}
              i={i}
              product = {product}
+             handleMyProductDelete = {handleMyProductDelete}
              ></MySingleProduct>)
             }
+           </div>
         </div>
     );
 };
