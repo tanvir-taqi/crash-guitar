@@ -6,7 +6,7 @@ import { AuthContext } from '../userContext/UserContext';
 
 const SellerRoute = ({children}) => {
     const {user,loading} = useContext(AuthContext)
-    console.log(user);
+  
     const [role,roleLoading] = useRole(user?.email)
     const location = useLocation();
 

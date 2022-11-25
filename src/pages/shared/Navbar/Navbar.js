@@ -10,10 +10,7 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
     
-
     const [role, roleLoading] = useRole(user?.email)
-
-
     const handleLogOut = () => {
         const agreeToLogout = window.confirm("Are You Sure?")
         if (agreeToLogout) {
