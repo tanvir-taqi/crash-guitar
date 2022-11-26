@@ -80,7 +80,7 @@ const AddProduct = () => {
                 reset()
                 setProductAddLoading(false)
             })
-            navigate('/myproducts')
+            navigate('/dashboard/myproducts')
     }
 
     if (loading || productAddLoading) {

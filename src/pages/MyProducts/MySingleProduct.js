@@ -8,7 +8,7 @@ const MySingleProduct = ({product,i,handleMyProductDelete ,handleAddToAd}) => {
             <img src={productPhoto} className='h-20 w-20 border-b-4 border-r-2 border-l-2 border-cyan-700 p-1 rounded-full' alt="" />
             <h1 className='text-center'>{productName}</h1>
             <p className='text-center'>$ {askingPrice}</p>
-            <p className='text-center'>Available</p>
+            <p className='text-center'>{status}</p>
            { !advertise &&  <button onClick={()=>handleAddToAd(_id)} className='btn btn-xs text-end'>Add To Advertisement</button> }
            { advertise && <p className='text-center'>On the advertisement</p> }
             <button onClick={()=>handleMyProductDelete(_id)} className='btn btn-xs bg-red-600 '>X</button>

@@ -12,11 +12,14 @@ const Products = () => {
     const products = useLoaderData()
     const navigation = useNavigation();
     const [currentProduct, setCurrentProduct] = useState(null);
+    const [pLoading , setpLoading] = useState(false);
+
+        const stopLoading = () => {
+            setpLoading(false)
+        }
 
 
-
-
-    if (navigation.state === "loading") {
+    if (navigation.state === "loading" || pLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
 
@@ -43,6 +46,8 @@ const Products = () => {
                     currentProduct && <BookingProduct
                         product={currentProduct}
                         setCurrentProduct={setCurrentProduct}
+                        stopLoading = {stopLoading}
+                        setpLoading ={setpLoading}
                     ></BookingProduct>
                 }
 

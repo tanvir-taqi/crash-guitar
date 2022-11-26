@@ -9,7 +9,7 @@ const Navbar = () => {
     const [display, setDisplay] = useState(false)
 
     const { user, logOut } = useContext(AuthContext);
-    
+
     const [role, roleLoading] = useRole(user?.email)
     const handleLogOut = () => {
         const agreeToLogout = window.confirm("Are You Sure?")
@@ -40,23 +40,11 @@ const Navbar = () => {
                         <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/blogs'>Blogs</NavLink>
                         {/* <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/products/allproducts'>Products</NavLink> */}
 
-                        {
-                            user && role === 'seller' ? <>
-                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/addproduct'>Add A Product</NavLink>
-                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/myproducts'>My Products</NavLink>
-
-                            </> : ''
-                        }
-                        {
-                            user && role === 'buyer' ? <>
-                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/myorders'>My Orders</NavLink>
-
-                            </> : ''
-                        }
 
 
                         {
                             user ? <>
+                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/dashboard'>Dashboard</NavLink>
 
                                 <div className='my-3'> {user?.photoURL ? <img src={user?.photoURL} alt="" className="w-8 h-8 rounded-full  " /> : <span className=''><BiUserCircle></BiUserCircle></span>}</div>
                                 <button onClick={handleLogOut} className='md:mx-4 text-lg font-semibold my-2'>Sign Out</button>

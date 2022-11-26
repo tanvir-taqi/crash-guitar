@@ -4,16 +4,16 @@ import toast from 'react-hot-toast';
 
 import { AuthContext } from '../userContext/UserContext';
 
-const BookingProduct = ({ product ,setCurrentProduct }) => {
+const BookingProduct = ({ product ,setCurrentProduct ,setpLoading,stopLoading}) => {
     const { user } = useContext(AuthContext)
     const { askingPrice, categoryid,status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
     const [bookStatus,setBookStatus] = useState(status)
-    console.log(bookStatus);
+  
 
     const { register, handleSubmit, reset, formState: { errors }  } = useForm();
 
     const handleBooking = (data) => {
-
+        setpLoading(true)
         const booking ={
             price:askingPrice,
             sellerEmail,
@@ -54,7 +54,7 @@ const BookingProduct = ({ product ,setCurrentProduct }) => {
                             toast.success("Congratulations!! You have successfully booked a new product")
                             setCurrentProduct(null)
                             setBookStatus("Booked")
-                            console.log(bookStatus);
+                            stopLoading()
                             reset()
                         }
                     })
