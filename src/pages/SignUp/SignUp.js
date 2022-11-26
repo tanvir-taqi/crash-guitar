@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../componenets/LoadingSpinner';
-import { AuthContext } from '../userContext/UserContext';
+import LoadingSpinner from '../../componenets/LoadingSpinner';
+import { AuthContext } from '../../userContext/UserContext';
+
 
 const SignUp = () => {
     const { createUser, userUpdate, setLoading, loading } = useContext(AuthContext);

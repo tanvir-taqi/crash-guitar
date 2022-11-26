@@ -8,7 +8,7 @@ const SingleProduct = ({ product, setProduct }) => {
     const { user } = useContext(AuthContext)
     const [role, roleLoading] = useRole(user?.email)
 
-    const { askingPrice, categoryid, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
+    const { askingPrice, categoryid,status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
 
 
     return (
@@ -20,7 +20,6 @@ const SingleProduct = ({ product, setProduct }) => {
                     <div className=" md:w-96 shadow-lg border p-5">
                         <div className="border-b mb-5 flex justify-between text-sm">
                             <div className="text-cyan-600 flex items-center pb-2 pr-2 border-b-2 border-cyan-600 capitalize">
-
                                 <h1 className="font-bold text-lg inline-block">{productName}</h1>
                             </div>
 
@@ -75,11 +74,11 @@ const SingleProduct = ({ product, setProduct }) => {
                         </div>
                         {
 
-                            role === 'buyer' && <label
+                            role === 'buyer' && status !=="Booked" ? <label
                                 htmlFor="booking-modal"
                                 onClick={() => setProduct(product)}
                                 className=' btn capitalize outline-none btn-sm border-none w-full bg-cyan-600  font-semibold rounded-full hover:text-black hover:bg-cyan-400'
-                            >Book Now</label>
+                            >Book Now</label>  : ''
                         }
                     </div>
 

@@ -47,6 +47,12 @@ const Navbar = () => {
 
                             </> : ''
                         }
+                        {
+                            user && role === 'buyer' ? <>
+                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/myorders'>My Orders</NavLink>
+
+                            </> : ''
+                        }
 
 
                         {

@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+
 import { AuthContext } from '../userContext/UserContext';
 
 const BookingProduct = ({ product ,setCurrentProduct }) => {
     const { user } = useContext(AuthContext)
-  
-    const { askingPrice, categoryid, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
+    const { askingPrice, categoryid,status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
+    const [bookStatus,setBookStatus] = useState(status)
+    console.log(bookStatus);
 
-    const { register, handleSubmit, reset, formState: { errors } , isLoading } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }  } = useForm();
 
     const handleBooking = (data) => {
 
@@ -23,13 +26,15 @@ const BookingProduct = ({ product ,setCurrentProduct }) => {
             productPhoto,
             sellerLocation:location,
             sellersPhone:phone,
+            productId: _id
         }
 
             fetch(`http://localhost:5000/products/${_id}`,{
                 method:"PUT",
                 headers:{
                     'content-type': 'application/json'
-                }
+                },
+                body: JSON.stringify({status:'Booked'})
             })
             .then(res => res.json())
             .then(data =>{
@@ -46,9 +51,10 @@ const BookingProduct = ({ product ,setCurrentProduct }) => {
                     .then(res => res.json())
                     .then(data =>{
                         if(data.acknowledged){
-
+                            toast.success("Congratulations!! You have successfully booked a new product")
                             setCurrentProduct(null)
-                            isLoading(false)
+                            setBookStatus("Booked")
+                            console.log(bookStatus);
                             reset()
                         }
                     })
@@ -59,6 +65,7 @@ const BookingProduct = ({ product ,setCurrentProduct }) => {
 
     return (
         <div>
+            
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
@@ -111,8 +118,10 @@ const BookingProduct = ({ product ,setCurrentProduct }) => {
                             })} className="input input-bordered w-full max-w-xs" />
                         </div>
 
-
-                        <input className='btn  mt-4 bg-cyan-700' value="Book Now" type="submit" />
+                            {
+                                bookStatus === "Booked" || <input className='btn  mt-4 bg-cyan-700' value="Book Now" type="submit" />
+                            }
+                        
 
                     </form>
                     <div className="modal-action">

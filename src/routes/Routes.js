@@ -4,9 +4,12 @@ import AddProduct from "../pages/AddProduct/AddProduct";
 import Blogs from "../pages/Blogs/Blogs";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import MyOrders from "../pages/MyOrders/MyOrders";
 import MyProducts from "../pages/MyProducts/MyProducts";
+import SignUp from "../pages/SignUp/SignUp";
 import Products from "../Products/Products";
-import SignUp from "../SignUp/SignUp";
+import BuyerRoute from "./BuyerRoute";
+
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 
@@ -44,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: '/myproducts',
                 element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path: '/myorders',
+                element:<BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
         ]
     }

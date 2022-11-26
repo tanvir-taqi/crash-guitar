@@ -8,9 +8,14 @@ import { router } from './routes/Routes';
 
 function App() {
   return (
-    <RouterProvider router={router}>
-      <Toaster></Toaster>
-    </RouterProvider>
+    <div>
+      <RouterProvider router={router}>
+      </RouterProvider>
+      <Toaster 
+      position="top-center"
+      reverseOrder={false}
+      ></Toaster>
+    </div>
   );
 }
 
