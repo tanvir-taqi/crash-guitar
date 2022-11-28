@@ -81,11 +81,11 @@ const SingleProduct = ({ product, setProduct }) => {
                         </div>
                         {
 
-                            role === 'buyer' && status !=="Booked" ? <label
+                            role === 'buyer' ? <label
                                 htmlFor="booking-modal"
                                 onClick={() => setProduct(product)}
                                 className=' btn capitalize outline-none btn-sm border-none w-full bg-cyan-600  font-semibold rounded-full hover:text-black hover:bg-cyan-400'
-                            >Book Now</label>  : <p className='text-center bg-cyan-900 rounded-full p-1 text-cyan-600 mx-3 font-bold'> {product.status}</p>
+                            >Book Now</label> : <p className='text-center bg-cyan-900 rounded-full p-1 text-cyan-600 mx-3 font-bold'> {product.status}</p>
                         }
                     </div>
                 </div>
