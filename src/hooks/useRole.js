@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 
 const useRole =(email)=>{
-    const [role, setRole] = useState()
+    const [role, setRole] = useState('')
     const [roleLoading, setRoleLoading] = useState(true)
 
     useEffect(()=>{
@@ -13,6 +13,7 @@ const useRole =(email)=>{
             setRole(data.role)
             setRoleLoading(false)
         })
+        .catch(err => console.log(err))
         
     },[email])
 

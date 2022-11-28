@@ -14,9 +14,10 @@ const MyProducts = () => {
     const {data:myProducts=[], refetch, isLoading} = useQuery({
         queryKey: ['myproducts',sellerEmail],
         queryFn: async ()=>{
+            
             const res = await fetch(`http://localhost:5000/myproducts/?email=${sellerEmail}`)
             const data = await res.json()
-            console.log(data);
+           
             return data
         }
     })
@@ -59,8 +60,8 @@ const MyProducts = () => {
                 })
     }
 
-
     if (isLoading) {
+        refetch()
         return <LoadingSpinner></LoadingSpinner>
     }
 

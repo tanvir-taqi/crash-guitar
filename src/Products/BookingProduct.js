@@ -97,11 +97,26 @@ const BookingProduct = ({ product ,setCurrentProduct ,setpLoading,stopLoading}) 
                             })} defaultValue={productName} readOnly className="input input-bordered w-full max-w-xs" />
                         </div>
 
+
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Product Price</span></label>
                             <input type="text" {...register("aPrice", {
                                 required: true
                             })} defaultValue={askingPrice} readOnly className="input input-bordered w-full max-w-xs" />
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Purchase Year</span></label>
+                            <input type="text" {...register("usedYears", {
+                                required: true
+                            })} defaultValue={usedYears} readOnly className="input input-bordered w-full max-w-xs" />
+                        </div>
+
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Product Description</span></label>
+                            <input type="text" {...register("description", {
+                                required: true
+                            })} defaultValue={description} readOnly className="input input-bordered w-full max-w-xs" />
                         </div>
 
                         <div className="form-control w-full max-w-xs">
