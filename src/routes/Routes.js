@@ -6,11 +6,13 @@ import AllBuyers from "../pages/AllBuyers/AllBuyers";
 import AllSellers from "../pages/AllSellers/AllSellers";
 import Blogs from "../pages/Blogs/Blogs";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import MyProducts from "../pages/MyProducts/MyProducts";
 import Payment from "../pages/Payment/Payment";
+import ReportedItems from "../pages/ReportedItems/ReportedItems";
 import SignUp from "../pages/SignUp/SignUp";
 import Products from "../Products/Products";
 import AdminRoute from "./AdminRoute";
@@ -51,6 +53,7 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element:<PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/dashboard',
@@ -77,10 +80,18 @@ export const router = createBrowserRouter([
                 element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
+                path: '/dashboard/reporteditem',
+                element:<AdminRoute><ReportedItems></ReportedItems></AdminRoute>
+            },
+            {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
                 loader : ({params})=> fetch(`http://localhost:5000/bookings/${params.id}`)
             },
         ]
+    },
+    {
+        path: '*',
+        element:<ErrorPage></ErrorPage>
     }
 ])

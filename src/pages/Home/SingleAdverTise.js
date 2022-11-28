@@ -12,7 +12,7 @@ const SingleAdverTise = ({ product, setCurrentProduct }) => {
 
             {
 
-                role === 'buyer' && product.status !== "Booked" ? <label
+                role === 'buyer' ? <label
                     htmlFor="booking-modal"
                     onClick={() => setCurrentProduct(product)}
                     className=' absolute top-1/2  btn capitalize outline-none btn-sm border-none bg-cyan-600  font-semibold rounded-full hover:text-black hover:bg-cyan-400'

@@ -4,60 +4,74 @@ import toast from 'react-hot-toast';
 
 import { AuthContext } from '../userContext/UserContext';
 
-const BookingProduct = ({ product ,setCurrentProduct ,setpLoading,stopLoading}) => {
+const BookingProduct = ({ product, setCurrentProduct, setpLoading, stopLoading }) => {
     const { user } = useContext(AuthContext)
-    const { askingPrice, categoryid,status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
-    const [bookStatus,setBookStatus] = useState(status)
-  
+    const { askingPrice,
+        categoryid,
+        status,
+        postedOnline,
+        condition,
+        description,
+        location,
+        marketPrice,
+        phone,
+        productName,
+        productPhoto,
+        sellerEmail,
+        sellerName,
+        usedYears,
+        _id } = product;
+    const [bookStatus, setBookStatus] = useState(status)
 
-    const { register, handleSubmit, reset, formState: { errors }  } = useForm();
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const handleBooking = (data) => {
         setpLoading(true)
-        const booking ={
-            price:askingPrice,
+        const booking = {
+            price: askingPrice,
             sellerEmail,
             sellerName,
             productName,
-            buyersName:data.name,
-            buyersEmail:data.email,
-            phone:data.phone,
-            location:data.location,
+            buyersName: data.name,
+            buyersEmail: data.email,
+            phone: data.phone,
+            location: data.location,
             productPhoto,
-            sellerLocation:location,
-            sellersPhone:phone,
+            sellerLocation: location,
+            sellersPhone: phone,
             productId: _id
         }
 
-            fetch(`http://localhost:5000/products/${_id}`,{
-                method:"PUT",
-                headers:{
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({status:'Booked'})
-            })
+        fetch(`http://localhost:5000/products/${_id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'Booked'})
+        })
             .then(res => res.json())
-            .then(data =>{
-                
-                if(data.acknowledged){
+            .then(data => {
 
-                    fetch(`http://localhost:5000/bookings`,{
-                        method:'POST',
-                        headers:{
+                if (data.acknowledged) {
+
+                    fetch(`http://localhost:5000/bookings`, {
+                        method: 'POST',
+                        headers: {
                             'content-type': 'application/json'
                         },
                         body: JSON.stringify(booking)
                     })
-                    .then(res => res.json())
-                    .then(data =>{
-                        if(data.acknowledged){
-                            toast.success("Congratulations!! You have successfully booked a new product")
-                            setCurrentProduct(null)
-                            setBookStatus("Booked")
-                            stopLoading()
-                            reset()
-                        }
-                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                toast.success("Congratulations!! You have successfully booked a new product")
+                                setCurrentProduct(null)
+                                setBookStatus("Booked")
+                                stopLoading()
+                                reset()
+                            }
+                        })
                 }
             })
     }
@@ -65,11 +79,11 @@ const BookingProduct = ({ product ,setCurrentProduct ,setpLoading,stopLoading}) 
 
     return (
         <div>
-            
+
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
-                <img src={productPhoto} className='h-32 w-32 rounded-full mx-auto block p-1 border-b-4 border-r-2 border-l-2 border-cyan-700' alt="" />
+                    <img src={productPhoto} className='h-32 w-32 rounded-full mx-auto block p-1 border-b-4 border-r-2 border-l-2 border-cyan-700' alt="" />
 
                     <form onSubmit={handleSubmit(handleBooking)}>
 
@@ -123,7 +137,7 @@ const BookingProduct = ({ product ,setCurrentProduct ,setpLoading,stopLoading}) 
                             <label className="label"> <span className="label-text">Phone Number</span></label>
                             <input type="text" {...register("phone", {
                                 required: true
-                            })}  className="input input-bordered w-full max-w-xs" />
+                            })} className="input input-bordered w-full max-w-xs" />
                         </div>
 
                         <div className="form-control w-full max-w-xs">
@@ -133,14 +147,14 @@ const BookingProduct = ({ product ,setCurrentProduct ,setpLoading,stopLoading}) 
                             })} className="input input-bordered w-full max-w-xs" />
                         </div>
 
-                            {
-                                bookStatus === "Booked" || <input className='btn  mt-4 bg-cyan-700' value="Book Now" type="submit" />
-                            }
-                        
+                        {
+                            bookStatus === "Booked" || <input className='btn  mt-4 bg-cyan-700' value="Book Now" type="submit" />
+                        }
+
 
                     </form>
                     <div className="modal-action">
-                        <label htmlFor="booking-modal" onClick={()=>setCurrentProduct(null)} className="btn">X</label>
+                        <label htmlFor="booking-modal" onClick={() => setCurrentProduct(null)} className="btn">X</label>
                     </div>
                 </div>
             </div>

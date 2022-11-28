@@ -27,6 +27,7 @@ const DashBoardLayout = () => {
                             user && role === 'admin' ? <>
                                 <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/dashboard/allseller'>All Sellers</NavLink>
                                 <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/dashboard/allbuyer'>All Buyers</NavLink>
+                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-cyan-700' : 'mr-4 text-lg font-semibold   my-2')} to='/dashboard/reporteditem'>Reported Item</NavLink>
 
                             </> : ''
                         }

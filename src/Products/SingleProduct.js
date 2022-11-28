@@ -6,15 +6,39 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import LoadingSpinner from '../componenets/LoadingSpinner';
 import useVerified from '../hooks/useVerified';
 import { FaCheck } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 const SingleProduct = ({ product, setProduct }) => {
     const { user } = useContext(AuthContext)
     const [role, roleLoading] = useRole(user?.email)
-    
-    const { askingPrice, categoryid,status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
-    const [verified,verifyLoading] = useVerified(product?.sellerEmail)
-    
-    if(roleLoading ){
+
+    const { askingPrice, categoryid, status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
+    const [verified, verifyLoading] = useVerified(product?.sellerEmail)
+
+    const handleReportToAdmin=(id)=>{
+        console.log(id);
+        const confirm = window.confirm('Are you sure you want to report this product to the admin?')
+        if(!confirm){
+            toast.success("Okay!!")
+            return
+        }else{
+            fetch(`http://localhost:5000/reportproducts/${id}`,{
+                method:"PUT",
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({report:true})
+            })
+            .then(res => res.json())
+            .then(data =>{
+                console.log(data);
+                toast.error("Reported Successfully!!")
+            })
+        }
+        
+    }
+
+    if (roleLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
 
@@ -37,7 +61,7 @@ const SingleProduct = ({ product, setProduct }) => {
                                 <div className=" bg-cover text-center overflow-hidden">
                                     <PhotoProvider>
                                         <PhotoView src={productPhoto}>
-                                        <img src={productPhoto} className='h-48 w-48' alt="" />
+                                            <img src={productPhoto} className='h-48 w-48' alt="" />
                                         </PhotoView>
                                     </PhotoProvider>
                                 </div>
@@ -77,7 +101,7 @@ const SingleProduct = ({ product, setProduct }) => {
 
 
                             </div>
-
+                            <button onClick={()=>handleReportToAdmin(_id)} className=' my-3 btn capitalize outline-none btn-sm border-none w-full bg-cyan-900  font-semibold rounded-full hover:text-black hover:bg-cyan-400'>Report To Admin</button>
                         </div>
                         {
 

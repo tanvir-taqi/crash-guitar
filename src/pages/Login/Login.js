@@ -43,9 +43,9 @@ const Login = () => {
                         localStorage.setItem('crashGuitarToken', data.token)
                         setLoading(false)
 
+                        navigate(from, { replace: true });
                     })
 
-                navigate(from, { replace: true });
 
             })
             .catch(error => {
