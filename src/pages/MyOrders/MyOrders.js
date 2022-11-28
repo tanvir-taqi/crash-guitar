@@ -11,7 +11,7 @@ const MyOrders = () => {
     const { data: myOrders = [], refetch, isLoading } = useQuery({
         queryKey: ['myorders', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myorders?email=${user?.email}`,{
+            const res = await fetch(`https://crash-guitar-server.vercel.app/myorders?email=${user?.email}`,{
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
                 }
@@ -23,7 +23,7 @@ const MyOrders = () => {
     })
 
     const handleDeleteOrder = (id,productId)=>{
-        fetch(`http://localhost:5000/products/${productId}`,{
+        fetch(`https://crash-guitar-server.vercel.app/products/${productId}`,{
             method:"PUT",
             headers:{
                 'content-type': 'application/json'
@@ -33,7 +33,7 @@ const MyOrders = () => {
         .then(res => res.json())
         .then(data =>{
             if(data.acknowledged){
-                fetch(`http://localhost:5000/myorders/${id}`,{
+                fetch(`https://crash-guitar-server.vercel.app/myorders/${id}`,{
                     method: 'DELETE',
                 })
                 .then(res => res.json())

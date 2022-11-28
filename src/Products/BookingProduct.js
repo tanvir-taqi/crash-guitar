@@ -43,7 +43,7 @@ const BookingProduct = ({ product, setCurrentProduct, setpLoading, stopLoading }
             productId: _id
         }
 
-        fetch(`http://localhost:5000/products/${_id}`, {
+        fetch(`https://crash-guitar-server.vercel.app/products/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -55,7 +55,7 @@ const BookingProduct = ({ product, setCurrentProduct, setpLoading, stopLoading }
 
                 if (data.acknowledged) {
 
-                    fetch(`http://localhost:5000/bookings`, {
+                    fetch(`https://crash-guitar-server.vercel.app/bookings`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

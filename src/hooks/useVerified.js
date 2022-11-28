@@ -7,7 +7,7 @@ const useVerified = (email)=>{
 
     useEffect(()=>{
      
-        fetch(`http://localhost:5000/usersverification?email=${email}`)
+        fetch(`https://crash-guitar-server.vercel.app/usersverification?email=${email}`)
         .then(res =>res.json())
         .then(data=> {
             console.log(data.verified);

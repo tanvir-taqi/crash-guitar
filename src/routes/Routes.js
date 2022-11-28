@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
+                loader:({params})=>fetch(`https://crash-guitar-server.vercel.app/products/${params.id}`)
             },
            
         ]
@@ -86,7 +86,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
-                loader : ({params})=> fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader : ({params})=> fetch(`https://crash-guitar-server.vercel.app/bookings/${params.id}`)
             },
         ]
     },

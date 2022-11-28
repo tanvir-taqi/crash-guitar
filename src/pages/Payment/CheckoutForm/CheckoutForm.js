@@ -16,7 +16,7 @@ const CheckoutForm = ({ booking }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://crash-guitar-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,23 +77,26 @@ const CheckoutForm = ({ booking }) => {
       setSuccess("Congratulations..Payment Successful")
       setTransID(paymentIntent.id)
 
-      fetch(`http://localhost:5000/myorders/${_id}`,{
-        method: "DELETE",
+      fetch(`https://crash-guitar-server.vercel.app/myorders/${_id}`,{
+        method: "PUT",
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({status:'Paid'})
       })
         .then(res => res.json())
         .then(data => {
         })
 
-      fetch(`http://localhost:5000/products/${productId}`, {
+      fetch(`https://crash-guitar-server.vercel.app/products/${productId}`, {
         method: "PUT",
-        headers: {
+        headers:{
           'content-type': 'application/json'
         },
-        body: JSON.stringify({ status: 'Paid' })
+        body: JSON.stringify({status:'Paid'})
       })
         .then(res => res.json())
         .then(data => {
-
         })
 
     }

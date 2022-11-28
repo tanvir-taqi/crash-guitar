@@ -8,14 +8,14 @@ import { AuthContext } from '../../userContext/UserContext';
 
 
 const AddProduct = () => {
-    const { user, loading } = useContext(AuthContext)
+    const { user, loading ,setLoading } = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [categories, setCategories] = useState([])
     const navigate = useNavigate();
     const [productAddLoading, setProductAddLoading] = useState(false)
 
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://crash-guitar-server.vercel.app/category')
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
@@ -25,6 +25,7 @@ const AddProduct = () => {
     const imagebbKey = process.env.REACT_APP_image_key
 
     const handleAddProduct = (data) => {
+        setLoading(true)
         setProductAddLoading(true)
         const date = new Date()
         const dateTime =  format(date , 'PP')
@@ -66,7 +67,7 @@ const AddProduct = () => {
 
 
     const addProductToDB = (product) => {
-        fetch('http://localhost:5000/products', {
+        fetch('https://crash-guitar-server.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -77,9 +78,10 @@ const AddProduct = () => {
             .then(data => {
                 toast("Congratulations! You have successfully added the product")
                 reset()
+                navigate('/dashboard/myproducts')
                 setProductAddLoading(false)
+                setLoading(false)
             })
-            navigate('/dashboard/myproducts')
     }
 
     if (loading || productAddLoading) {

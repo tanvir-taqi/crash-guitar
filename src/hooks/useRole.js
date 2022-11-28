@@ -7,7 +7,7 @@ const useRole = (email) =>{
     const [roleLoading, setRoleLoading] = useState(true)
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/users?email=${email}`)
+        fetch(`https://crash-guitar-server.vercel.app/users?email=${email}`)
         .then(res => res.json())
         .then(data => {
             setRole(data.role)

@@ -9,7 +9,7 @@ const AllBuyers = () => {
     const { data: allBuyers = [], isLoading ,refetch} = useQuery({
         queryKey: ['allbuyer'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allbuyer`,{
+            const res = await fetch(`https://crash-guitar-server.vercel.app/allbuyer`,{
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
                 }
@@ -27,15 +27,15 @@ const AllBuyers = () => {
             return
         }
         else {
-                fetch(`http://localhost:5000/allbuyer/${id}`,{
+                fetch(`https://crash-guitar-server.vercel.app/allbuyer/${id}`,{
                     method:'DELETE',
                 })
                 .then(res => res.json())
                 .then(data => {
                     if(data.acknowledged){
                         toast.error("Buyer Deleted Successfully")
-                        isLoading(false)
                         refetch()
+                        isLoading(false)
                     }
                 })
         }

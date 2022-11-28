@@ -30,7 +30,7 @@ const Login = () => {
                     email: user.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://crash-guitar-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -65,7 +65,7 @@ const Login = () => {
                     email: user.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://crash-guitar-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -86,7 +86,7 @@ const Login = () => {
                     img: user?.photoURL
                 }
 
-                fetch('http://localhost:5000/allusers', {
+                fetch('https://crash-guitar-server.vercel.app/allusers', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

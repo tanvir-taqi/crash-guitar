@@ -9,7 +9,7 @@ const ReportedItems = () => {
     const {data:reporteditem=[],isLoading,refetch} = useQuery({
         queryKey:['reporteditems'],
         queryFn: async ()=>{
-            const res = await fetch('http://localhost:5000/reporteditems')
+            const res = await fetch('https://crash-guitar-server.vercel.app/reporteditems')
             const data = await res.json()
      
             return data 
@@ -22,7 +22,7 @@ const ReportedItems = () => {
         if(!confirm){
             return
         }
-        fetch(`http://localhost:5000/products/${id}`,{
+        fetch(`https://crash-guitar-server.vercel.app/products/${id}`,{
             method: 'DELETE',
         })
         .then(res => res.json())

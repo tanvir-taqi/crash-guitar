@@ -8,7 +8,7 @@ const AllSellers = () => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['allseller'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allseller`, {
+            const res = await fetch(`https://crash-guitar-server.vercel.app/allseller`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
                 }
@@ -25,14 +25,14 @@ const AllSellers = () => {
             return
         }
         else {
-            fetch(`http://localhost:5000/allseller/${id}`, {
+            fetch(`https://crash-guitar-server.vercel.app/allseller/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.acknowledged) {
 
-                        fetch(`http://localhost:5000/usersproducts?email=${email}`, {
+                        fetch(`https://crash-guitar-server.vercel.app/usersproducts?email=${email}`, {
                             method: 'DELETE',
 
                         })
@@ -40,8 +40,8 @@ const AllSellers = () => {
                             .then(data => {
                                 if (data.acknowledged) {
                                     toast.error("Seller Deleted Successfully")
-                                    isLoading(false)
                                     refetch()
+                                    isLoading(false)
                                 }
                             })
 
@@ -61,7 +61,7 @@ const AllSellers = () => {
         }
         else {
 
-            fetch(`http://localhost:5000/allseller/${id}`, {
+            fetch(`https://crash-guitar-server.vercel.app/allseller/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

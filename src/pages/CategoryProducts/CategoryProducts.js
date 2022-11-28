@@ -7,7 +7,7 @@ const CategoryProducts = () => {
     const [category, setCategory] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/category')
+        axios.get('https://crash-guitar-server.vercel.app/category')
         .then(data => {
             setCategory(data.data)
         })

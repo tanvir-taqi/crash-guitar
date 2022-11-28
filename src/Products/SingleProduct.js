@@ -22,7 +22,7 @@ const SingleProduct = ({ product, setProduct }) => {
             toast.success("Okay!!")
             return
         }else{
-            fetch(`http://localhost:5000/reportproducts/${id}`,{
+            fetch(`https://crash-guitar-server.vercel.app/reportproducts/${id}`,{
                 method:"PUT",
                 headers:{
                     'content-type': 'application/json'
@@ -101,7 +101,10 @@ const SingleProduct = ({ product, setProduct }) => {
 
 
                             </div>
-                            <button onClick={()=>handleReportToAdmin(_id)} className=' my-3 btn capitalize outline-none btn-sm border-none w-full bg-cyan-900  font-semibold rounded-full hover:text-black hover:bg-cyan-400'>Report To Admin</button>
+                            {
+                                role === 'buyer' && <button onClick={()=>handleReportToAdmin(_id)} className=' my-3 btn capitalize outline-none btn-sm border-none w-full bg-cyan-900  font-semibold rounded-full hover:text-black hover:bg-cyan-400'>Report To Admin</button>
+                            }
+                            
                         </div>
                         {
 
