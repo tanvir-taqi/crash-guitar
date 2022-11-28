@@ -9,20 +9,12 @@ const CategoryProducts = () => {
     useEffect(()=>{
         axios.get('http://localhost:5000/category')
         .then(data => {
-            
             setCategory(data.data)
         })
         
     },[])
 
-    // const {data:category=[]} = useQuery({
-    //     queryKey:['category'],
-    //     queryFn:async ()=>{
-    //         const res = await fetch('http://localhost:5000/category')
-    //         const data = await res.json()
-    //         return data
-    //     }
-    // })
+  
     
     return (
         <div className='my-20 '>

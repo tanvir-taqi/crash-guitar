@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BiBullseye, BiSleepy } from 'react-icons/bi';
-import { FaGoogle  } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../componenets/LoadingSpinner';
 import { AuthContext } from '../../userContext/UserContext';
@@ -29,8 +29,8 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-            
-                fetch('', {
+
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -64,8 +64,8 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-            
-                fetch('', {
+
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -79,10 +79,28 @@ const Login = () => {
                         setLoading(false)
 
                     })
+                const dbProfile = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    role: 'buyer',
+                    img: user?.photoURL
+                }
+
+                fetch('http://localhost:5000/allusers', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(dbProfile)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        navigate(from, { replace: true });
+                        setLoading(false)
+                    })
 
 
-                navigate(from, { replace: true });
-                setLoading(false)
+
             })
             .catch(error => {
                 setLoading(false)

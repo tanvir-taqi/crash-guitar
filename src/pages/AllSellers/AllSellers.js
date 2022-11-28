@@ -8,7 +8,11 @@ const AllSellers = () => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['allseller'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allseller`)
+            const res = await fetch(`http://localhost:5000/allseller`, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
+                }
+            })
             const data = await res.json();
             return data
         }
@@ -30,6 +34,7 @@ const AllSellers = () => {
 
                         fetch(`http://localhost:5000/usersproducts?email=${email}`, {
                             method: 'DELETE',
+
                         })
                             .then(res => res.json())
                             .then(data => {

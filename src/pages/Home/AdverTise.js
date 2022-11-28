@@ -2,7 +2,7 @@ import React from 'react';
 import SingleAdverTise from './SingleAdverTise';
 
 const AdverTise = ({advertisedProduct,setCurrentProduct}) => {
-    console.log(advertisedProduct);
+   
     return (
         <div>
             <h1 className='text-center text-3xl font-extrabold text-slate-800 my-6'>Featured Products</h1>

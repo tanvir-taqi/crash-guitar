@@ -12,7 +12,11 @@ const Home = () => {
     const { data: advertisedProduct = [] } = useQuery({
         queryKey: ['advertisedproduct'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advertisedproduct`)
+            const res = await fetch(`http://localhost:5000/advertisedproduct`,{
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
+                }
+            })
             const data = res.json();
             return data
         }

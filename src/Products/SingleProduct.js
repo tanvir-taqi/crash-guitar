@@ -13,9 +13,7 @@ const SingleProduct = ({ product, setProduct }) => {
     
     const { askingPrice, categoryid,status, postedOnline, condition, description, location, marketPrice, phone, productName, productPhoto, sellerEmail, sellerName, usedYears, _id } = product;
     const [verified,verifyLoading] = useVerified(product?.sellerEmail)
-    console.log(verified);
-    console.log(sellerEmail);
-
+    
     if(roleLoading ){
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -92,14 +90,6 @@ const SingleProduct = ({ product, setProduct }) => {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
 
 
         </div>

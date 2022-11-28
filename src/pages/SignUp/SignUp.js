@@ -36,13 +36,29 @@ const SignUp = () => {
             })
                 .then(res => res.json())
                 .then(imgData => {
-                    console.log(imgData);
+                    
                     if (imgData.success) {
                         createUser(data.email, data.password)
                             .then(result => {
                                 const user = result.user;
 
-
+                                const currentUser = {
+                                    email: user.email
+                                }
+                                fetch('http://localhost:5000/jwt', {
+                                    method: 'POST',
+                                    headers: {
+                                        'content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify(currentUser)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        
+                                        localStorage.setItem('crashGuitarToken', data.token)
+                                     
+                
+                                    })
                                 const userInfo = {
                                     displayName: data.name,
                                     photoURL: imgData.data.url
@@ -80,6 +96,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
+                
                 setLoading(false)
                 navigate('/')
             })
