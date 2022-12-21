@@ -74,10 +74,15 @@ const SignUp = () => {
 
                                         addUserToDb(dbProfile)
                                     })
-                                    .catch(err => console.log(err));
+                                    .catch(err => {
+                                        console.log(err)
+                                    });
                             })
                             .catch(error => {
-                                console.log(error)
+                                setLoading(false)
+                                if(error){
+                                    setErrorMsg("Password should be at least 6 characters") 
+                                }
 
                             });
                     }
@@ -165,10 +170,10 @@ const SignUp = () => {
                         {errors.confirm && <p className='text-red-500'>{errors.confirm.message}</p>}
                     </div>
 
+                    <p className='text-red-500 font-semibold'>{errorMsg}</p>
 
                     <input className='btn  mt-4 bg-cyan-700' value="Sign Up" type="submit" />
 
-                    <p>{errorMsg}</p>
 
                 </form>
                 <h4>Already Have an Account? <Link to='/login' className='text-cyan-700'>Sign In</Link></h4>

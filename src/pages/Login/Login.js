@@ -9,6 +9,8 @@ import { AuthContext } from '../../userContext/UserContext';
 const Login = () => {
     const { login, setLoading, loading, socialLogin } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+
     const navigate = useNavigate();
     const location = useLocation();
     const googleProvider = new GoogleAuthProvider()
@@ -49,8 +51,9 @@ const Login = () => {
 
             })
             .catch(error => {
-                console.log(error);
+                
                 setLoading(false)
+                setErrorMsg("Wrong email or password")
             })
     }
 
@@ -138,6 +141,8 @@ const Login = () => {
                         </div>
                         <input type={showPass ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="p-2 w-full" />
                     </div>
+                    <p className='text-red-500 font-semibold'>{errorMsg}</p>
+
                     <input type="submit" className='font-bold text-lg bg-cyan-600 py-2 px-4 rounded-3xl my-3 cursor-pointer' value="Sign In" />
                 </form>
                 <h4>New to <strong>Crash Guitar?</strong> <Link to='/signup' className='text-cyan-900'>Create Account</Link></h4>

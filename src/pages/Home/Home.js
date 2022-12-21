@@ -18,18 +18,21 @@ const Home = () => {
                     authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
                 }
             })
-            const data = res.json();
+            const  data= res.json();
             return data
         }
     })
+
+    const newAdvertisedProduct = advertisedProduct.filter(dt=> dt.status === "Available")
+    console.log(newAdvertisedProduct);
 
     return (
         <div>
             <HomeBanner></HomeBanner>
             <div>
                 {
-                    advertisedProduct.length > 0 && <AdverTise
-                        advertisedProduct={advertisedProduct}
+                    newAdvertisedProduct.length > 0 && <AdverTise
+                        advertisedProduct={newAdvertisedProduct}
                         setCurrentProduct={setCurrentProduct}
                     ></AdverTise>
                 }

@@ -12,6 +12,7 @@ const CheckoutForm = ({ booking }) => {
   const stripe = useStripe()
   const elements = useElements()
   const { buyersName, price, productName, productId, buyersEmail, _id } = booking
+ console.log(_id);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -77,17 +78,19 @@ const CheckoutForm = ({ booking }) => {
       setSuccess("Congratulations..Payment Successful")
       setTransID(paymentIntent.id)
 
-      fetch(`https://crash-guitar-server.vercel.app/myorders/${_id}`,{
+      fetch(`https://crash-guitar-server.vercel.app/myorders/${_id}`, {
         method: "PUT",
         headers:{
           'content-type': 'application/json'
+  
         },
         body: JSON.stringify({status:'Paid'})
       })
         .then(res => res.json())
         .then(data => {
+          console.log(data);
         })
-
+     
       fetch(`https://crash-guitar-server.vercel.app/products/${productId}`, {
         method: "PUT",
         headers:{
@@ -97,6 +100,7 @@ const CheckoutForm = ({ booking }) => {
       })
         .then(res => res.json())
         .then(data => {
+          console.log(data);
         })
 
     }
@@ -104,6 +108,7 @@ const CheckoutForm = ({ booking }) => {
     navigate('/')
     setProcessing(false)
   }
+
 
 
 

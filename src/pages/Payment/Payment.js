@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51M7I24FpFBm5JqXjin83xSWIwfxqeuR9TAqqc
 const Payment = () => {
     const booking = useLoaderData()
     const { buyersName, price, productName } = booking
-
+      
     return (
         <div className='flex justify-center'>
 
