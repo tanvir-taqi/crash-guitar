@@ -17,3 +17,8 @@ features and techonologies i used
 - mongo db database
 - admin can remove any seller or buyer and reported items
 - login with email or google
+
+
+admin access :
+email: ad@min.com 
+password: 1254412544
