@@ -23,16 +23,15 @@ const Home = () => {
         }
     })
 
-    const newAdvertisedProduct = advertisedProduct.filter(dt=> dt.status === "Available")
-    console.log(newAdvertisedProduct);
+  
 
     return (
         <div>
             <HomeBanner></HomeBanner>
             <div>
                 {
-                    newAdvertisedProduct.length > 0 && <AdverTise
-                        advertisedProduct={newAdvertisedProduct}
+                    advertisedProduct.length > 0 && <AdverTise
+                        advertisedProduct={advertisedProduct}
                         setCurrentProduct={setCurrentProduct}
                     ></AdverTise>
                 }
