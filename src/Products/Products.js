@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import LoadingSpinner from '../componenets/LoadingSpinner';
@@ -17,11 +18,17 @@ const Products = () => {
     const stopLoading = () => {
         setpLoading(false)
     }
+    
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    })
 
 
     if (navigation.state === "loading" || pLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
+
+   
 
 
     return (

@@ -1,5 +1,5 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiBullseye, BiSleepy } from 'react-icons/bi';
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -111,6 +111,10 @@ const Login = () => {
             });
 
     }
+
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    })
 
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>

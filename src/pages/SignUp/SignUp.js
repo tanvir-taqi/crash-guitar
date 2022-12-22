@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../componenets/LoadingSpinner';
@@ -106,6 +106,11 @@ const SignUp = () => {
                 navigate('/')
             })
     }
+
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    })
+
 
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
