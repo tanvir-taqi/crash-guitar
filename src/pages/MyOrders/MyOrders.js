@@ -23,6 +23,7 @@ const MyOrders = () => {
     })
 
     const handleDeleteOrder = (id,productId)=>{
+        alert("start")
         fetch(`https://crash-guitar-server.vercel.app/products/${productId}`,{
             method:"PUT",
             headers:{
@@ -33,12 +34,14 @@ const MyOrders = () => {
         .then(res => res.json())
         .then(data =>{
             if(data.acknowledged){
+                console.log(data.acknowledged);
                 fetch(`https://crash-guitar-server.vercel.app/myorders/${id}`,{
                     method: 'DELETE',
                 })
                 .then(res => res.json())
                 .then(data => {
                     if(data.acknowledged){
+                        alert("end")
                         toast.error('Deleted successfully')
                         refetch()
                         isLoading(false)

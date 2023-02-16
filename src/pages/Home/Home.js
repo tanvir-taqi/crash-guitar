@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookingProduct from '../../Products/BookingProduct';
 import CategoryProducts from '../CategoryProducts/CategoryProducts';
 import Stats from '../Stats/Stats';
@@ -8,21 +8,36 @@ import HomeBanner from './HomeBanner';
 
 const Home = () => {
     const [currentProduct, setCurrentProduct] = useState(null);
+    const [advertisedProduct, setadvertisedProduct] = useState([]);
   
 
-    const { data: advertisedProduct = [] } = useQuery({
-        queryKey: ['advertisedproduct'],
-        queryFn: async () => {
-            const res = await fetch(`https://crash-guitar-server.vercel.app/advertisedproduct`,{
+    // const { data: advertisedProduct = [] } = useQuery({
+    //     queryKey: ['advertisedproduct'],
+    //     queryFn: async () => {
+    //         const res = await fetch(`https://crash-guitar-server.vercel.app/advertisedproduct`,{
+    //             headers:{
+    //                 authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
+    //             }
+    //         })
+    //         const  data= res.json();
+    //         console.log(data);
+    //         return data
+    //     }
+    // })
+
+    useEffect(()=>{
+        fetch(`https://crash-guitar-server.vercel.app/advertisedproduct`,{
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('crashGuitarToken')}`
                 }
             })
-            const  data= res.json();
-            return data
-        }
-    })
+            .then(res=>res.json())
+            .then(data => {
+                const availableProd = data.filter(prod=> prod.status === "Available");
+                setadvertisedProduct(availableProd)
 
+            })
+    })
   
 
     return (

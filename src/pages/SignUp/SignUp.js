@@ -16,8 +16,6 @@ const SignUp = () => {
 
     const from = location.state?.from?.pathname || "/";
 
-
-
     const imagebbKey = process.env.REACT_APP_image_key
   
 

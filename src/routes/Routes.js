@@ -14,6 +14,7 @@ import MyProducts from "../pages/MyProducts/MyProducts";
 import Payment from "../pages/Payment/Payment";
 import ReportedItems from "../pages/ReportedItems/ReportedItems";
 import SignUp from "../pages/SignUp/SignUp";
+import DetailsProduct from "../Products/DetailsProduct";
 import Products from "../Products/Products";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
@@ -46,6 +47,11 @@ export const router = createBrowserRouter([
                 path: '/category/:id',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
                 loader:({params})=>fetch(`https://crash-guitar-server.vercel.app/products/${params.id}`)
+            },
+            {
+                path: '/product/:id',
+                element:<PrivateRoute><DetailsProduct></DetailsProduct></PrivateRoute>,
+                loader:({params})=>fetch(`https://crash-guitar-server.vercel.app/singleproduct/${params.id}`)
             },
            
         ]

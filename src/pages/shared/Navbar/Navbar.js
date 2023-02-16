@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
-    const [role, roleLoading] = useRole(user?.email)
+    // const [role, roleLoading] = useRole(user?.email)
     const handleLogOut = () => {
         const agreeToLogout = window.confirm("Are You Sure?")
         if (agreeToLogout) {
@@ -22,7 +22,7 @@ const Navbar = () => {
 
     return (
         <div className='' >
-            <div className={` bg-gray-100 z-50 w-full header py-5 header-container  flex flex-col md:flex-row justify-around items-center`}>
+            <div className={` bg-[] z-50 w-full header py-5 header-container  flex flex-col md:flex-row justify-around items-center`}>
                 <div className="header-logo flex justify-around around items-center w-full  md:w-1/6">
 
                     {/* header logo and name  */}

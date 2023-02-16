@@ -6,7 +6,7 @@ const SingleMyOrder = ({myOrder,i,handleDeleteOrder}) => {
 console.log(status);
     return (
         <div className='grid grid-cols-1 md:grid-cols-6 gap-6 items-center md:rounded-full w-full md:flex-row bg-cyan-200 my-4 p-3  '>
-        <p>{i+1}</p>
+        <p className='font-extrabold'>{i+1}</p>
         <img src={productPhoto} className='h-20 w-20 border-b-4 border-r-2 border-l-2 border-cyan-700 p-1 rounded-full' alt="" />
         <h1 className='text-center'>{productName}</h1>
         <p className='text-center'>$ {price}</p>  
