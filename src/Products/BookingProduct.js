@@ -147,9 +147,9 @@ const BookingProduct = ({ product, setCurrentProduct, setpLoading, stopLoading }
                             })} className="input input-bordered w-full max-w-xs" />
                         </div>
 
-                        {
-                            bookStatus === "Booked" || <input className='btn  mt-4 bg-cyan-700' value="Book Now" type="submit" />
-                        }
+                        
+                            <input className='btn  mt-4 bg-cyan-700' value="Book Now" type="submit" />
+                        
 
 
                     </form>

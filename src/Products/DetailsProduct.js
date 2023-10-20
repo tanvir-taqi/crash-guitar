@@ -134,7 +134,7 @@ const DetailsProduct = () => {
 
                             </div>
                             {
-                                role === 'buyer' && <button onClick={() => handleReportToAdmin(_id)} className=' my-3 btn capitalize outline-none btn-sm border-none w-48 bg-cyan-900  font-semibold rounded-full hover:text-black hover:bg-cyan-400'>Report To Admin</button>
+                                role === 'buyer' && <button onClick={() => handleReportToAdmin(_id)} className=' my-3 btn capitalize outline-none btn-sm border-none w-48 bg-cyan-900  font-semibold rounded-full duration-500 hover:text-black duration-500 hover:bg-cyan-400'>Report To Admin</button>
                             }
 
                         </div>
@@ -143,7 +143,7 @@ const DetailsProduct = () => {
                             role === 'buyer' ? <label
                                 htmlFor="booking-modal"
                                 onClick={() => setCurrentProduct(product)}
-                                className=' btn capitalize outline-none btn-sm border-none  bg-cyan-600 w-96  font-semibold rounded-full hover:text-black hover:bg-cyan-400'
+                                className=' btn capitalize outline-none btn-sm border-none  bg-cyan-600 w-96  font-semibold rounded-full duration-500 hover:text-black duration-500 hover:bg-cyan-400'
                             >Book Now</label> : <p className='text-center bg-cyan-900 rounded-full p-1 text-cyan-600 mx-3 font-bold'> {product.status}</p>
                         }
                     </div>
